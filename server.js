@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./schema/movies");
 const mongoose = require("mongoose");
@@ -8,10 +9,10 @@ const port = 3005;
 
 app.use(cors());
 app.use("/graphql", graphqlHTTP({ schema, graphiql: true }));
-
+console.log(process.env.PASSWORD);
 mongoose
   .connect(
-    `mongodb+srv://voit:1234567890@cluster0.zbkdbet.mongodb.net/moviesDB?retryWrites=true&w=majority`
+    `mongodb+srv://voit:${process.env.PASSWORD}@cluster0.zbkdbet.mongodb.net/moviesDB?retryWrites=true&w=majority`
   )
   .then(() =>
     app.listen(port, () =>
