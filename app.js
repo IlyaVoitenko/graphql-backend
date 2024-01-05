@@ -7,7 +7,7 @@ app.use(cors());
 
 const app = express();
 
-app.use((req, res) => {
+app.use((_, res) => {
   res.status(404).json({ message: "Not found" });
 });
 
