@@ -90,10 +90,10 @@ const Mutation = new GraphQLObjectType({
     updateMovie: {
       type: MovieType,
       args: {
-        id: { type: GraphQLID },
+        id: { type: new GraphQLNonNull(GraphQLID) },
         name: { type: new GraphQLNonNull(GraphQLString) },
         genre: { type: new GraphQLNonNull(GraphQLString) },
-        directorId: { type: GraphQLID },
+        directorId: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(_, args) {
         const { id, name, genre, directorId } = args;
@@ -113,7 +113,7 @@ const Mutation = new GraphQLObjectType({
     updateDirector: {
       type: DirectorType,
       args: {
-        id: { type: GraphQLID },
+        id: { type: new GraphQLNonNull(GraphQLID) },
         name: { type: new GraphQLNonNull(GraphQLString) },
         age: { type: new GraphQLNonNull(GraphQLInt) },
       },
@@ -134,7 +134,7 @@ const Mutation = new GraphQLObjectType({
     deleteDirector: {
       type: DirectorType,
       args: {
-        id: { type: GraphQLID },
+        id: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(_, args) {
         return Directors.findByIdAndDelete(args.id);
@@ -143,7 +143,7 @@ const Mutation = new GraphQLObjectType({
     deleteMovie: {
       type: MovieType,
       args: {
-        id: { type: GraphQLID },
+        id: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(_, args) {
         return Movies.findByIdAndDelete(args.id);
